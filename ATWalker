@@ -32,8 +32,8 @@ $LongA = 'xxx'
 $LatB = '' # - Left Of Fence (B)
 $LongB = ''
 # -------------------- #
-$LatB = 'xxx' # - Back Of Fence (C)
-$LongB = 'xxx'
+$LatC = 'xxx' # - Back Of Fence (C)
+$LongC = 'xxx'
 # -------------------- #
 $LatD = '' # - Right side fence (D)
 $LongD = ''
