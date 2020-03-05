@@ -1,0 +1,52 @@
+# ---------------------------------------------------------------------- #
+# Check for internet connection # WIP : Fix <--- Make Better [TODO] <---
+# ---------------------------------------------------------------------- #
+while (!(test-connection 8.8.8.8 -Count 1 -Quiet)) {
+    write-host "Internet Down, this is just a functionality test, blah..."
+}
+
+# ---------------------------------------------------------------------- #
+# Function for detecting change in internet connection.
+# Execute function after script initialization
+# ---------------------------------------------------------------------- #
+# $LastCon = '' # Counter in minutes (ex: Connected 'x' minutes ago.)
+# $ConnectionIsDown = ''
+# $ConnectionIsUp = ''
+# ---------------------------------------------------------------------- #
+
+
+# ---------------------------------------------------------------------- #
+# Function for executing script upon establishing a internet connection.
+# ---------------------------------------------------------------------- #
+# TODO: stuff here..
+# TODO: stuff here...
+# ---------------------------------------------------------------------- #
+
+
+# -------------------- #
+# Define GeoHQ Radius
+# -------------------- #
+$LatA = 'xxx' # Start at HQ - Front of Fence (A)
+$LongA = 'xxx' 
+# -------------------- #
+$LatB = '' # - Left Of Fence (B)
+$LongB = ''
+# -------------------- #
+$LatB = 'xxx' # - Back Of Fence (C)
+$LongB = 'xxx'
+# -------------------- #
+$LatD = '' # - Right side fence (D)
+$LongD = ''
+# ----------------------- #
+# Get inner fence radius
+# ----------------------- #
+# TODO: Calculation function for inner radius of fence points.
+
+# ---------------------------------------------------------------------- #
+# Define Radius Fence Trigger
+# (Trigger when 'x' amount of distance from lat/long border A,B,C,D)
+# ---------------------------------------------------------------------- #
+$TriggerA = '' # Front
+$TriggerB = '' # Left
+$TriggerC = '' # Back
+$TriggerD = '' # Right
