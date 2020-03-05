@@ -9,10 +9,11 @@ while (!(test-connection 8.8.8.8 -Count 1 -Quiet)) {
 # Function for detecting change in internet connection.
 # Execute function after script initialization
 # ---------------------------------------------------------------------- #
-# $LastCon = '' # Counter in minutes (ex: Connected 'x' minutes ago.)
+# $LastConTime = '' # Counter in minutes
+# $LastConLat = '' # Last Connection Latitude
+# #LastConLong = '' # Last Connection Longitude
 # $ConnectionIsDown = ''
 # $ConnectionIsUp = ''
-# ---------------------------------------------------------------------- #
 
 
 # ---------------------------------------------------------------------- #
