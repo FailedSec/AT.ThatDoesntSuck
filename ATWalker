@@ -1,9 +1,29 @@
 # ---------------------------------------------------------------------- #
-# Check for internet connection # WIP : Fix <--- Make Better [TODO] <---
+# Check for internet connection, then check if VPN is active
 # ---------------------------------------------------------------------- #
+# [Checking Internet Connectivity First]
 while (!(test-connection 8.8.8.8 -Count 1 -Quiet)) {
-    write-host "Internet Down, this is just a functionality test, blah..."
+    write-host "Internet Down"
 }
+
+# [Now check if VPN is active / connected]
+# in this example "AnyConnect", "Juniper" or "VPN" is the connection name's, but you can change this to whatever fits your environment.
+$vpnCheck = Get-WmiObject -Query "Select Name,NetEnabled from Win32_NetworkAdapter where (Name like '%AnyConnect%' or Name like '%Juniper%' or Name like '%VPN%') and NetEnabled='True'"
+
+# Set this value to Boolean if it returns a value it's true, if it does not return a value it's false.
+$vpnCheck = [bool]$vpnCheck
+
+# Check if $vpnCheck is true or false.
+if ($vpnCheck) {
+    return $vpnCheck
+    exit(0)
+}
+else {
+    return $vpnCheck
+    exit(1)
+}
+# ---------------------------------------------------------------------- #
+
 
 # ---------------------------------------------------------------------- #
 # Function for detecting change in internet connection.
