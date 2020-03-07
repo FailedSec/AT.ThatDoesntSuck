@@ -1,14 +1,26 @@
+# [Pseudo]
+# while (ConnectionIsDown < 1) {
+#   if (ConnectionIsDown > 0) { 
+#    if (LastConTime > 2 {
+#      .. do stuff ..
+#  }
+# }
+
+function CheckInetStatus() {
 # ---------------------------------------------------------------------- #
 # Check for internet connection, then check if VPN is active
 # ---------------------------------------------------------------------- #
 # [Checking Internet Connectivity First]
-while (!(test-connection 8.8.8.8 -Count 1 -Quiet)) {
-    write-host "Internet Down"
+# [If we don't want to dump to a log on a network drive, we can dump to a log on a onedrive]
+    if ((test-connection 8.8.8.8 -Count 3)) {
+        write-host "Internet is up!"
+    }
 }
 
-# [Now check if VPN is active / connected] ~ Thanks to Harry Caskey for the snippet for this! (harrycaskey.com)
-# in this example "AnyConnect", "Juniper" or "VPN" is the connection name's, but you can change this to whatever fits your environment.
-$vpnCheck = Get-WmiObject -Query "Select Name,NetEnabled from Win32_NetworkAdapter where (Name like '%AnyConnect%' or Name like '%Juniper%' or Name like '%VPN%') and NetEnabled='True'"
+function CheckVPNStatus() {
+    # [Now check if VPN is active / connected]
+    # [If we so choose, we can append to a log on a users dedicated network drive or network location once vpn is connected]
+    $vpnCheck = Get-WmiObject -Query "Select Name,NetEnabled from Win32_NetworkAdapter where (Name like '%AnyConnect%' or Name like '%Juniper%' or Name like '%VPN%') and NetEnabled='True'"
 
 # Set this value to Boolean if it returns a value it's true, if it does not return a value it's false.
 $vpnCheck = [bool]$vpnCheck
@@ -22,8 +34,6 @@ else {
     return $vpnCheck
     exit(1)
 }
-# ---------------------------------------------------------------------- #
-
 
 # ---------------------------------------------------------------------- #
 # Function for detecting change in internet connection.
@@ -34,6 +44,7 @@ else {
 # #LastConLong = '' # Last Connection Longitude
 # $ConnectionIsDown = ''
 # $ConnectionIsUp = ''
+# ---------------------------------------------------------------------- #
 
 
 # ---------------------------------------------------------------------- #
@@ -47,17 +58,17 @@ else {
 # -------------------- #
 # Define GeoHQ Radius
 # -------------------- #
-$LatA = 'xxx' # Start at HQ - Front of Fence (A)
-$LongA = 'xxx' 
+$LatA = 'xxx' # Start at GLHQ - Front of Fence
+$LongA = 'yyy' 
 # -------------------- #
-$LatB = '' # - Left Of Fence (B)
-$LongB = ''
+$LatB = 'xxx' # - Left Of Fence
+$LongB = 'yyy'
 # -------------------- #
-$LatC = 'xxx' # - Back Of Fence (C)
-$LongC = 'xxx'
+$LatB = 'xxx' # - Back Of Fence
+$LongB = 'yyy'
 # -------------------- #
-$LatD = '' # - Right side fence (D)
-$LongD = ''
+$LatD = 'xxx' # - Right side fence
+$LongD = 'yyy'
 # ----------------------- #
 # Get inner fence radius
 # ----------------------- #
@@ -67,7 +78,7 @@ $LongD = ''
 # Define Radius Fence Trigger
 # (Trigger when 'x' amount of distance from lat/long border A,B,C,D)
 # ---------------------------------------------------------------------- #
-$TriggerA = '' # Front
-$TriggerB = '' # Left
-$TriggerC = '' # Back
-$TriggerD = '' # Right
+$TriggerA = 'xxx,yyy/xxx,yyy' # Front trigger
+$TriggerB = 'xxx,yyy/xxx,yyy' # Left trigger
+$TriggerC = 'xxx,yyy/xxx,yyy' # Back trigger
+$TriggerD = 'xxx,yyy/xxx,yyy' # Right trigger
