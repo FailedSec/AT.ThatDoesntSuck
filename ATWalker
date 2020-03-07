@@ -58,7 +58,7 @@ else {
 # -------------------- #
 # Define GeoHQ Radius
 # -------------------- #
-$LatA = 'xxx' # Start at GLHQ - Front of Fence
+$LatA = 'xxx' # Start at HQPoint1 - Front of Fence
 $LongA = 'yyy' 
 # -------------------- #
 $LatB = 'xxx' # - Left Of Fence
